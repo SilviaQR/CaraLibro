@@ -7,7 +7,7 @@ import java.time.temporal.ChronoUnit;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class EntradaFoto extends Entrada
+public class EntradaFoto extends EntradaConComentario
 {
     // instance variables - replace the example below with your own
 

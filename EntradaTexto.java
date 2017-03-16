@@ -7,10 +7,9 @@ import java.time.temporal.ChronoUnit;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class EntradaTexto extends Entrada
+public class EntradaTexto extends EntradaConComentario
 {
     // instance variables - replace the example below with your own
-
     private String mensaje;
 
     /**
@@ -27,7 +26,6 @@ public class EntradaTexto extends Entrada
     {
         return mensaje;
     }
-
    
     public String toString()
     {

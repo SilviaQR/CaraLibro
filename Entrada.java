@@ -14,7 +14,6 @@ public class Entrada
     private LocalDateTime momentoPublicacion;
     private int cantidadMeGusta;
     private int unlikes;
-    private ArrayList<String> comentarios;
 
     /**
      * Constructor for objects of class Entrada
@@ -24,7 +23,6 @@ public class Entrada
         // initialise instance variables
         usuario = autor;    
         momentoPublicacion = LocalDateTime.now();
-        comentarios = new ArrayList<String>();
         cantidadMeGusta = 0;
         unlikes = 0;
     }
@@ -39,24 +37,11 @@ public class Entrada
         return cantidadMeGusta;
     }
     
-    public String getComentarios()
-    {
-        String comentarioAMostrar = "";
-        for(String comentario : comentarios)
-        { 
-            comentarioAMostrar += comentario + " ";
-        }
-        return comentarioAMostrar;
-    }
+    
     
      public void noMeGusta()
     {
         unlikes--;
-    }
-    
-    public void addComentario(String texto)
-    {
-        comentarios.add(texto);
     }
     
     public LocalDateTime getMomentoPublicacion()
