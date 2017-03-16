@@ -1,21 +1,18 @@
 import java.util.ArrayList;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 /**
  * Write a description of class EntradaFoto here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class EntradaFoto
+public class EntradaFoto extends Entrada
 {
     // instance variables - replace the example below with your own
-    private String usuario;
+
     private String urlImagen;
     private String titulo;
-    private LocalDateTime momentoPublicacion;
-    private int cantidadMeGusta;
-    private int unlikes;
-    private ArrayList<String> comentarios;
 
     /**
      * Constructor for objects of class EntradaFoto
@@ -23,57 +20,46 @@ public class EntradaFoto
     public EntradaFoto(String autor, String url, String titulo)
     {
         // initialise instance variables
-        usuario = autor;
+        super(autor);
         urlImagen = url;
         this.titulo = titulo;
-        comentarios = new ArrayList<String>();
-        cantidadMeGusta = 0;
-        unlikes = 0;
-        momentoPublicacion = LocalDateTime.now();
+
     }
 
-    public int meGusta()
-    {
-        cantidadMeGusta++;
-        return cantidadMeGusta;
-    }
     
-    public int noMeGusta()
-    {
-        unlikes--;
-        return unlikes;
-    }
     
-    public void addComentario(String comentario)
-    {
-        comentarios.add(comentario);
-    }
     
     public String getUrlImagen()
     {
         return urlImagen;
     }
-    
-    public LocalDateTime getMomentoPublicacion()
-    {
-        return momentoPublicacion;
-    }
+
     
     public String toString()
     {
-        String textoAMostrar = usuario + ": " + urlImagen;
-        System.out.println(usuario + " " + momentoPublicacion.getDayOfMonth() + "/" + momentoPublicacion.getMonthValue() + "/" + momentoPublicacion.getYear()
-        + " " + momentoPublicacion.getHour() + ":" + momentoPublicacion.getMinute() + ":" + momentoPublicacion.getSecond() + "\n" + urlImagen 
-        + "\n" + titulo);
-        if(!comentarios.isEmpty()){
-            for(String comentario : comentarios){
-                System.out.println(comentario);
-            }
+        String textoAMostrar = "";
+        textoAMostrar += "Usuario: " + getAutor() + "\n";
+        textoAMostrar += titulo + "\n";
+        textoAMostrar += urlImagen + "\n";
+        textoAMostrar += getCantidadMeGusta() + " me gusta";
+        long segundosQueHanPasadoDesdeCreacion = getMomentoPublicacion().until(LocalDateTime.now(), ChronoUnit.SECONDS);
+        long minutosQueHanPasadoDesdeCreacion = segundosQueHanPasadoDesdeCreacion / 60;
+        long segundosResiduales = segundosQueHanPasadoDesdeCreacion % 60;
+        textoAMostrar += "Hace: ";
+        if(minutosQueHanPasadoDesdeCreacion > 0)
+        {
+            textoAMostrar += minutosQueHanPasadoDesdeCreacion + " minutos ";
+        }
+        textoAMostrar += segundosResiduales + " segundos.\n";
+        if(getComentarios().isEmpty())
+        {
+            textoAMostrar += "Esta entrada aún no tiene comentarios. ¡Sé el primero en comentar!";
         }
         else{
-            System.out.println("Esta entrada aún no tiene comentarios. ¡Sé el primero en comentar!");
+
+            textoAMostrar += getComentarios();
+
         }
-        System.out.println("Me gusta:" + cantidadMeGusta + " " + "No me gusta: " + unlikes);
         return textoAMostrar;
     }
 }

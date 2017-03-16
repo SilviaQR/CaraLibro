@@ -20,22 +20,32 @@ public class Muro
         mensajes = new ArrayList<EntradaTexto>();
         fotos = new ArrayList<EntradaFoto>();
     }
-    
+
     public void addEntradaTexto(EntradaTexto entradaTexto)
     {
         mensajes.add(entradaTexto);
     }
-    
+
     public void addEntradaFoto(EntradaFoto entradaFoto)
     {
         fotos.add(entradaFoto);
     }
-    
+
     public String toString()
     {
         String textoAMostrar = "";
-        mensajes.toString();
-        fotos.toString();
+        for(EntradaTexto entrada : mensajes){ 
+            textoAMostrar += entrada + "\n";
+        }
+
+        for(EntradaFoto foto : fotos){
+            textoAMostrar += foto + "\n";
+        }
         return textoAMostrar;
+    }
+    
+    public void mostrar()
+    {
+        System.out.println(this);
     }
 }

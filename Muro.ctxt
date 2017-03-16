@@ -8,4 +8,6 @@ comment2.params=entradaFoto
 comment2.target=void\ addEntradaFoto(EntradaFoto)
 comment3.params=
 comment3.target=java.lang.String\ toString()
-numComments=4
+comment4.params=
+comment4.target=void\ mostrar()
+numComments=5
