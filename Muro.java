@@ -49,7 +49,7 @@ public class Muro
     public void mostrarDatosExclusivosEntradasFiltradas(String tipoEntrada, String nombre)
     {
         for(Entrada entrada : entradas){
-            if(tipoEntrada == entrada.getClass().getSimpleName() && entrada.getAutor().equals(nombre) ||tipoEntrada == entrada.getClass().getSimpleName()
+            if((tipoEntrada).equals(entrada.getClass().getSimpleName()) && entrada.getAutor().equals(nombre) || tipoEntrada.equals(entrada.getClass().getSimpleName())
              && nombre == null || tipoEntrada == null && entrada.getAutor().equals(nombre) || tipoEntrada == null && nombre == null){
                 switch(entrada.getClass().getSimpleName()){
                     case "EntradaTexto": ((EntradaTexto) entrada).mostrarDatosExclusivos();
