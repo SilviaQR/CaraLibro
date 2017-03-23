@@ -13,6 +13,7 @@ public class EntradaFoto extends EntradaConComentario
 
     private String urlImagen;
     private String titulo;
+    private int cantidadElementos;
 
     /**
      * Constructor for objects of class EntradaFoto
@@ -23,11 +24,8 @@ public class EntradaFoto extends EntradaConComentario
         super(autor);
         urlImagen = url;
         this.titulo = titulo;
-
+        cantidadElementos = 6;
     }
-
-    
-    
     
     public String getUrlImagen()
     {
@@ -37,29 +35,24 @@ public class EntradaFoto extends EntradaConComentario
     
     public String toString()
     {
-        String textoAMostrar = "";
-        textoAMostrar += "Usuario: " + getAutor() + "\n";
+        String textoAMostrar = super.toString();    
         textoAMostrar += titulo + "\n";
         textoAMostrar += urlImagen + "\n";
-        textoAMostrar += getCantidadMeGusta() + " me gusta";
-        long segundosQueHanPasadoDesdeCreacion = getMomentoPublicacion().until(LocalDateTime.now(), ChronoUnit.SECONDS);
-        long minutosQueHanPasadoDesdeCreacion = segundosQueHanPasadoDesdeCreacion / 60;
-        long segundosResiduales = segundosQueHanPasadoDesdeCreacion % 60;
-        textoAMostrar += "Hace: ";
-        if(minutosQueHanPasadoDesdeCreacion > 0)
-        {
-            textoAMostrar += minutosQueHanPasadoDesdeCreacion + " minutos ";
-        }
-        textoAMostrar += segundosResiduales + " segundos.\n";
-        if(getComentarios().isEmpty())
-        {
-            textoAMostrar += "Esta entrada aún no tiene comentarios. ¡Sé el primero en comentar!";
-        }
-        else{
-
-            textoAMostrar += getComentarios();
-
-        }
         return textoAMostrar;
+    }
+    
+     public void mostrar()
+    {
+        System.out.println(this);
+    }
+    
+    public int getCantidadDeDatosAsociadosALaEntrada()
+    {
+        return cantidadElementos;
+    }
+    
+    public void mostrarDatosExclusivos()
+    {
+        System.out.println(urlImagen + "\n" + titulo);
     }
 }

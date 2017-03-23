@@ -8,8 +8,7 @@ import java.util.ArrayList;
 public class Muro
 {
     // instance variables - replace the example below with your own
-    private ArrayList<EntradaTexto> mensajes;
-    private ArrayList<EntradaFoto> fotos;
+    private ArrayList<Entrada> entradas;
 
     /**
      * Constructor for objects of class Muro
@@ -17,35 +16,50 @@ public class Muro
     public Muro()
     {
         // initialise instance variables
-        mensajes = new ArrayList<EntradaTexto>();
-        fotos = new ArrayList<EntradaFoto>();
+        entradas = new ArrayList<>();
     }
 
-    public void addEntradaTexto(EntradaTexto entradaTexto)
+    public void addEntrada(Entrada nuevaEntrada)
     {
-        mensajes.add(entradaTexto);
-    }
-
-    public void addEntradaFoto(EntradaFoto entradaFoto)
-    {
-        fotos.add(entradaFoto);
+        entradas.add(nuevaEntrada);
     }
 
     public String toString()
     {
         String textoAMostrar = "";
-        for(EntradaTexto entrada : mensajes){ 
+        for(Entrada entrada : entradas){ 
             textoAMostrar += entrada + "\n";
-        }
-
-        for(EntradaFoto foto : fotos){
-            textoAMostrar += foto + "\n";
         }
         return textoAMostrar;
     }
-    
+
     public void mostrar()
     {
         System.out.println(this);
+    }
+
+    public void verCantidadDatosPorEntrada()
+    {
+        for(Entrada entrada : entradas)
+        {
+            System.out.println(entrada.getCantidadDeDatosAsociadosALaEntrada());
+        }
+    }
+
+    public void mostrarDatosExclusivosEntradasFiltradas(String tipoEntrada, String nombre)
+    {
+        for(Entrada entrada : entradas){
+            if(tipoEntrada == entrada.getClass().getSimpleName() && entrada.getAutor().equals(nombre) ||tipoEntrada == entrada.getClass().getSimpleName()
+             && nombre == null || tipoEntrada == null && entrada.getAutor().equals(nombre) || tipoEntrada == null && nombre == null){
+                switch(entrada.getClass().getSimpleName()){
+                    case "EntradaTexto": ((EntradaTexto) entrada).mostrarDatosExclusivos();
+                    break;
+                    case "EntradaFoto": ((EntradaFoto) entrada).mostrarDatosExclusivos();
+                    break;
+                    case "EntradaUnionAGrupo": ((EntradaUnionAGrupo) entrada).mostrarDatosExclusivos();
+                    break;
+                }
+            }
+        }
     }
 }

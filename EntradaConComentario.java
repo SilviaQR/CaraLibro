@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 /**
  * Write a description of class EntradaConComentario here.
  * 
@@ -31,5 +33,17 @@ public class EntradaConComentario extends Entrada
     public void addComentario(String texto)
     {
         comentarios.add(texto);
+    }
+    
+    public String toString()
+    {
+        String textoAMostrar = super.toString();
+        if(getComentarios().isEmpty()){
+            textoAMostrar += "Esta entrada aún no tiene comentarios. ¡Sé el primero en comentar!\n";
+        }
+        else{
+            textoAMostrar += getComentarios();
+        }
+        return textoAMostrar;
     }
 }

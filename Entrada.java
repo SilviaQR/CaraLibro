@@ -36,9 +36,7 @@ public class Entrada
     {
         return cantidadMeGusta;
     }
-    
-    
-    
+     
      public void noMeGusta()
     {
         unlikes--;
@@ -56,7 +54,29 @@ public class Entrada
     
     public String toString()
     {
-        String textoADevolver = "";
-        return textoADevolver;
+        String textoAMostrar = "";
+        textoAMostrar += "Usuario: " + getAutor() + "\n";
+        textoAMostrar += getCantidadMeGusta() + " me gusta. ";
+        long segundosQueHanPasadoDesdeCreacion = getMomentoPublicacion().until(LocalDateTime.now(), ChronoUnit.SECONDS);
+        long minutosQueHanPasadoDesdeCreacion = segundosQueHanPasadoDesdeCreacion / 60;
+        long segundosResiduales = segundosQueHanPasadoDesdeCreacion % 60;
+        textoAMostrar += "\nHace: ";
+        if(minutosQueHanPasadoDesdeCreacion > 0)
+        {
+            textoAMostrar += minutosQueHanPasadoDesdeCreacion + " minutos ";
+        }
+        textoAMostrar += segundosResiduales + " segundos.\n";
+        return textoAMostrar;
     }
+    
+    public void mostrar()
+    {
+    
+    }
+    
+    public int getCantidadDeDatosAsociadosALaEntrada()
+    {
+        return 0;
+    }
+     
 }

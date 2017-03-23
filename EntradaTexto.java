@@ -11,6 +11,7 @@ public class EntradaTexto extends EntradaConComentario
 {
     // instance variables - replace the example below with your own
     private String mensaje;
+    private int cantidadElementos;
 
     /**
      * Constructor for objects of class EntradaTexto
@@ -20,6 +21,7 @@ public class EntradaTexto extends EntradaConComentario
         // initialise instance variables
         super(autor);
         this.mensaje = mensaje;
+        cantidadElementos = 5;
     }
 
     public String getMensaje()
@@ -29,28 +31,24 @@ public class EntradaTexto extends EntradaConComentario
    
     public String toString()
     {
-        String textoAMostrar = "";
-        textoAMostrar += "Usuario: " + getAutor() + "\n";
+        String textoAMostrar = super.toString();
         textoAMostrar += mensaje + "\n";
-        textoAMostrar += getCantidadMeGusta() + " me gusta. ";
-        long segundosQueHanPasadoDesdeCreacion = getMomentoPublicacion().until(LocalDateTime.now(), ChronoUnit.SECONDS);
-        long minutosQueHanPasadoDesdeCreacion = segundosQueHanPasadoDesdeCreacion / 60;
-        long segundosResiduales = segundosQueHanPasadoDesdeCreacion % 60;
-        textoAMostrar += "Hace: ";
-        if(minutosQueHanPasadoDesdeCreacion > 0)
-        {
-            textoAMostrar += minutosQueHanPasadoDesdeCreacion + " minutos ";
-        }
-        textoAMostrar += segundosResiduales + " segundos.\n";
-        if(getComentarios().isEmpty())
-        {
-            textoAMostrar += "Esta entrada aún no tiene comentarios. ¡Sé el primero en comentar!";
-        }
-        else{
-            textoAMostrar += getComentarios();
-        }
-        System.out.println(textoAMostrar);
         return textoAMostrar;
+    }
+    
+     public void mostrar()
+    {
+        System.out.println(this);
+    }
+    
+    public int getCantidadDeDatosAsociadosALaEntrada()
+    {
+        return cantidadElementos;
+    }
+    
+    public void mostrarDatosExclusivos()
+    {
+        System.out.println(mensaje);
     }
 }
 
