@@ -25,21 +25,23 @@ public class EntradaConComentario extends Entrada
         String comentarioAMostrar = "";
         for(String comentario : comentarios)
         { 
-            comentarioAMostrar += comentario + " ";
+            comentarioAMostrar += comentario + "<br/>";
         }
         return comentarioAMostrar;
     }
-    
+
     public void addComentario(String texto)
     {
         comentarios.add(texto);
     }
-    
+
     public String toString()
     {
         String textoAMostrar = super.toString();
         if(getComentarios().isEmpty()){
-            textoAMostrar += "Esta entrada aún no tiene comentarios. ¡Sé el primero en comentar!\n";
+            textoAMostrar += "Esta entrada aún no tiene comentarios. ¡Sé el primero en comentar!<br/>"
+            + "<textarea cols=\"30\" rows=\"5\" style=\"color: black; text-align: left;\";\"></textarea><br/><p><input type=\"submit\" value=\"Enviar\"/>" 
+            + " " + "<input type=\"reset\" value=\"Borrar\"/></p>";
         }
         else{
             textoAMostrar += getComentarios();

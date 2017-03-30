@@ -55,17 +55,17 @@ public class Entrada
     public String toString()
     {
         String textoAMostrar = "";
-        textoAMostrar += "Usuario: " + getAutor() + "\n";
+        textoAMostrar += "<br/><b>Usuario</b>: " + getAutor() + "<br/>";
         textoAMostrar += getCantidadMeGusta() + " me gusta. ";
         long segundosQueHanPasadoDesdeCreacion = getMomentoPublicacion().until(LocalDateTime.now(), ChronoUnit.SECONDS);
         long minutosQueHanPasadoDesdeCreacion = segundosQueHanPasadoDesdeCreacion / 60;
         long segundosResiduales = segundosQueHanPasadoDesdeCreacion % 60;
-        textoAMostrar += "\nHace: ";
+        textoAMostrar += "<br/><b>Hace: ";
         if(minutosQueHanPasadoDesdeCreacion > 0)
         {
             textoAMostrar += minutosQueHanPasadoDesdeCreacion + " minutos ";
         }
-        textoAMostrar += segundosResiduales + " segundos.\n";
+        textoAMostrar += segundosResiduales + " segundos.<br/></b>";
         return textoAMostrar;
     }
     

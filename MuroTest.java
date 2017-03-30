@@ -13,13 +13,14 @@ import org.junit.Test;
  */
 public class MuroTest
 {
+    private EntradaUnionAGrupo entradaU1;
     private Muro muro1;
     private EntradaTexto entradaT1;
     private EntradaTexto entradaT2;
     private EntradaFoto entradaF1;
     private EntradaFoto entradaF2;
-    private EntradaUnionAGrupo entradaU1;
     private EntradaUnionAGrupo entradaU2;
+    private EntradaUnionAGrupo entradaU3;
 
     /**
      * Default constructor for test class MuroTest
@@ -36,19 +37,20 @@ public class MuroTest
     @Before
     public void setUp()
     {
+        entradaU1 = new EntradaUnionAGrupo("Brian", "DAM1");
         muro1 = new Muro();
-        entradaT1 = new EntradaTexto("Silvia", "Hola");
+        entradaT1 = new EntradaTexto("Silvia", "'¡Buenos días!");
         muro1.addEntrada(entradaT1);
-        entradaT2 = new EntradaTexto("Ivan", "Que tal");
+        entradaT2 = new EntradaTexto("Miguel", "¿Qué tal?!");
         muro1.addEntrada(entradaT2);
-        entradaF1 = new EntradaFoto("Miguel", "www.google.es", "Google");
+        entradaF1 = new EntradaFoto("Nacho", "http://www.elvinilo.es/337/fotomural-bosque-verde.jpg", "Bosque");
         muro1.addEntrada(entradaF1);
-        entradaF2 = new EntradaFoto("Nacho", "www.youtube.es", "Youtube");
+        entradaF2 = new EntradaFoto("Miguel", "http://www.abc.es/media/motor/2015/12/04/1-playa--620x349.jpg", "La playa");
         muro1.addEntrada(entradaF2);
-        entradaU1 = new EntradaUnionAGrupo("Brian", "dam1");
-        muro1.addEntrada(entradaU1);
-        entradaU2 = new EntradaUnionAGrupo("Valerie", "dam2");
+        entradaU2 = new EntradaUnionAGrupo("Brian", "DAM1");
+        entradaU3 = new EntradaUnionAGrupo("Valerie", "DAM1");
         muro1.addEntrada(entradaU2);
+        muro1.addEntrada(entradaU3);
     }
 
     /**

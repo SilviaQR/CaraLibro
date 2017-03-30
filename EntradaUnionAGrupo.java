@@ -31,7 +31,7 @@ public class EntradaUnionAGrupo extends Entrada
     {
         String textoAMostrar = super.toString();
         textoAMostrar += "El usuario " + getAutor() + " ";
-        textoAMostrar += "se ha unido al grupo " + grupo + ".\n";
+        textoAMostrar += "se ha unido al grupo " + grupo + ".<br/>";
         return textoAMostrar;
     }
     

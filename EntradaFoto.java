@@ -36,8 +36,8 @@ public class EntradaFoto extends EntradaConComentario
     public String toString()
     {
         String textoAMostrar = super.toString();    
-        textoAMostrar += titulo + "\n";
-        textoAMostrar += urlImagen + "\n";
+        textoAMostrar += titulo + "<br/>";
+        textoAMostrar += "<img src=\"" + urlImagen + "\"/><br/>";
         return textoAMostrar;
     }
     

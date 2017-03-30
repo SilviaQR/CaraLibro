@@ -32,7 +32,7 @@ public class EntradaTexto extends EntradaConComentario
     public String toString()
     {
         String textoAMostrar = super.toString();
-        textoAMostrar += mensaje + "\n";
+        textoAMostrar += mensaje + "<br/>";
         return textoAMostrar;
     }
     
