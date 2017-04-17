@@ -7,7 +7,7 @@ import java.time.temporal.ChronoUnit;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Entrada
+public abstract class Entrada
 {
     // instance variables - replace the example below with your own
     private String usuario;
@@ -31,27 +31,27 @@ public class Entrada
     {
         cantidadMeGusta++;
     }
-    
+
     public int getCantidadMeGusta()
     {
         return cantidadMeGusta;
     }
-     
-     public void noMeGusta()
+
+    public void noMeGusta()
     {
         unlikes--;
     }
-    
+
     public LocalDateTime getMomentoPublicacion()
     {
         return momentoPublicacion;
     }
-    
+
     public String getAutor()
     {
         return usuario;
     }
-    
+
     public String toString()
     {
         String textoAMostrar = "";
@@ -59,24 +59,29 @@ public class Entrada
         textoAMostrar += getCantidadMeGusta() + " me gusta. ";
         long segundosQueHanPasadoDesdeCreacion = getMomentoPublicacion().until(LocalDateTime.now(), ChronoUnit.SECONDS);
         long minutosQueHanPasadoDesdeCreacion = segundosQueHanPasadoDesdeCreacion / 60;
+        long horasQueHanPasadoDesdeCreacion = minutosQueHanPasadoDesdeCreacion / 60;
+        long diasQueHanPasadoDesdeCreacion = horasQueHanPasadoDesdeCreacion / 24;
         long segundosResiduales = segundosQueHanPasadoDesdeCreacion % 60;
         textoAMostrar += "<br/><b>Hace: ";
-        if(minutosQueHanPasadoDesdeCreacion > 0)
-        {
+        if(diasQueHanPasadoDesdeCreacion > 0){
+            textoAMostrar += diasQueHanPasadoDesdeCreacion + " días,";
+        }
+        if(horasQueHanPasadoDesdeCreacion > 0){
+            textoAMostrar += horasQueHanPasadoDesdeCreacion + " horas,";
+        }
+        if(minutosQueHanPasadoDesdeCreacion > 0){
             textoAMostrar += minutosQueHanPasadoDesdeCreacion + " minutos ";
         }
         textoAMostrar += segundosResiduales + " segundos.<br/></b>";
         return textoAMostrar;
     }
-    
-    public void mostrar()
-    {
-    
+
+    public void setCantidadMeGusta(int cantidad)
+    {    
+        cantidadMeGusta = cantidad;
     }
-    
-    public int getCantidadDeDatosAsociadosALaEntrada()
-    {
-        return 0;
-    }
-     
+
+    public abstract void mostrar();
+
+    public abstract int getCantidadDeDatosAsociadosALaEntrada();
 }

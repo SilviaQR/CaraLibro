@@ -1,10 +1,12 @@
 import java.util.ArrayList;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.io.BufferedWriter;
+import java.io.*;
 import java.nio.file.Files;
 import java.io.IOException;
 import java.awt.Desktop;
+import java.net.*;
+import java.util.Scanner;
 
 /**
  * Write a description of class Muro here.
@@ -15,6 +17,7 @@ import java.awt.Desktop;
 public class Muro
 {
     private ArrayList<Entrada> entradas;
+    private ArrayList<String> nuevoMuro;
 
     /**
      * Constructor for objects of class Muro
@@ -22,6 +25,7 @@ public class Muro
     public Muro()
     {
         entradas = new ArrayList<>();
+        nuevoMuro = new ArrayList<>();
     }
 
     public void addEntrada(Entrada nuevaEntrada)
@@ -97,6 +101,50 @@ public class Muro
         }
         catch (IOException exception){
             System.out.println(exception.toString());
+        }
+    }
+
+    public void mostrarMuroEnNavegador2(String user)
+    {
+        Runtime run = Runtime.getRuntime();
+        Path rutaArchivo = Paths.get("nuevoMuro.html");
+        try{
+            URL direccion = new URL("https://script.google.com/macros/s/AKfycbzHc3p1twTfyF7o0_cxSwnxSsyOemuHnSu406ly9DZIf5Ck2BA/exec" + "?user=" + user);
+            BufferedWriter archivo = Files.newBufferedWriter(rutaArchivo);
+            archivo.write("<html><head><title>CaraLibro - Muro</title><link rel=\"stylesheet\" type=\"text/css\" href=\"muroCodigo.css\" media=\"screen\"/></head><body>");
+            archivo.write("<h1><img src=\"caralibro.jpg\"/>araLibro</h1>");
+            archivo.write("Bienvenido a CaraLibro. Esto es lo que ha ocurrido en tu ausencia:<br/>");   
+            Scanner sc = new Scanner (direccion.openStream());
+            while(sc.hasNextLine()){
+                String lineaLeida = sc.nextLine();
+                String[] nuevasEntradas = lineaLeida.split(";");
+                for(String cadena : nuevasEntradas){
+                    nuevoMuro.add(cadena);
+
+                    switch(cadena){
+                        case "EntradaTexto": EntradaTexto nuevaEntradaTexto = new EntradaTexto(nuevasEntradas[1], nuevasEntradas[2]);                      
+                        entradas.add(nuevaEntradaTexto);
+                        archivo.write("<br/><fieldset>" + nuevaEntradaTexto + "<br/></fieldset>");
+                        break;
+                        case "EntradaFoto": EntradaFoto nuevaEntradaFoto = new EntradaFoto(nuevasEntradas[1], nuevasEntradas[2], nuevasEntradas[3]);
+                        entradas.add(nuevaEntradaFoto);
+                        archivo.write("<br/><fieldset>" + nuevaEntradaFoto + "<br/></fieldset>");
+                        break;
+                        case "EntradaUnionAGrupo": EntradaUnionAGrupo nuevaEntradaGrupo = new EntradaUnionAGrupo(nuevasEntradas[1], nuevasEntradas[2]);
+                        entradas.add(nuevaEntradaGrupo);
+                        archivo.write("<br/><fieldset>" + nuevaEntradaGrupo + "<br/></fieldset>");
+                        break;
+                    }
+                }
+                System.out.println(lineaLeida);
+            }
+            sc.close();
+            archivo.close();
+            run.exec("C:/Program Files (x86)/Google/Chrome/Application/chrome.exe " + "C:/Users/Zivy/Desktop/Programacion/CaraLibro/nuevoMuro.html");
+        }
+        catch(IOException exc)
+        {
+            System.out.println(exc.toString());
         }
     }
 }
