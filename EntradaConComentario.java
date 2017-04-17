@@ -7,7 +7,7 @@ import java.time.temporal.ChronoUnit;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class EntradaConComentario extends Entrada
+public abstract class EntradaConComentario extends Entrada
 {
     // instance variables - replace the example below with your own
     private ArrayList<String> comentarios;
@@ -39,7 +39,7 @@ public class EntradaConComentario extends Entrada
     {
         String textoAMostrar = super.toString();
         if(getComentarios().isEmpty()){
-            textoAMostrar += "Esta entrada aún no tiene comentarios. ¡Sé el primero en comentar!<br/>"
+            textoAMostrar += "Esta entrada a&uacute;n no tiene comentarios. ¡S&eacute; el primero en comentar!<br/>"
             + "<textarea cols=\"30\" rows=\"5\" style=\"color: black; text-align: left;\";\"></textarea><br/><p><input type=\"submit\" value=\"Enviar\"/>" 
             + " " + "<input type=\"reset\" value=\"Borrar\"/></p>";
         }
